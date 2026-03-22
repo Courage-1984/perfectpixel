@@ -1,0 +1,682 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Before &amp; After Examples — Perfect Pixel & Web | Photo Enhancement Gallery</title>
+  <meta name="description" content="Browse our portfolio of professional photo enhancements. See real before and after results for image upscaling, colorization, and restoration." />
+  <link rel="icon" type="image/png" href="images/logo-icon.png" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,700;0,800;1,700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.0/css/all.min.css" />
+  <link rel="stylesheet" href="css/style.css" />
+
+  <style>
+    /* Filter tabs */
+    .filter-bar {
+      display: flex;
+      gap: var(--space-sm);
+      flex-wrap: wrap;
+      justify-content: center;
+      margin-bottom: var(--space-3xl);
+    }
+
+    .filter-btn {
+      padding: 0.5rem 1.25rem;
+      border-radius: var(--radius-full);
+      font-size: 0.875rem;
+      font-weight: 600;
+      cursor: pointer;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid var(--color-border-2);
+      color: var(--color-text-secondary);
+      transition: all var(--transition-fast);
+      font-family: inherit;
+    }
+
+    .filter-btn:hover {
+      color: var(--color-text-primary);
+      border-color: rgba(255,255,255,0.2);
+    }
+
+    .filter-btn.active {
+      background: var(--grad-brand);
+      border-color: transparent;
+      color: #fff;
+      box-shadow: 0 4px 14px rgba(155,135,245,0.35);
+    }
+
+    /* Gallery with comparison widgets */
+    .examples-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: var(--space-xl);
+    }
+
+    .example-card {
+      background: var(--color-bg-card);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-xl);
+      overflow: hidden;
+      transition: all var(--transition-base);
+    }
+
+    .example-card:hover {
+      border-color: rgba(155,135,245,0.3);
+      transform: translateY(-5px);
+      box-shadow: 0 16px 48px rgba(0,0,0,0.5);
+    }
+
+    .example-card .comparison-widget {
+      border-radius: 0;
+      border: none;
+      box-shadow: none;
+      aspect-ratio: 4/3;
+    }
+
+    .example-card__meta {
+      padding: var(--space-lg);
+    }
+
+    .example-card__category {
+      font-size: 0.6875rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: var(--space-xs);
+    }
+
+    .example-card__category--upscaling { color: var(--color-purple); }
+    .example-card__category--colorization { color: var(--color-pink); }
+    .example-card__category--restoration { color: var(--color-teal); }
+
+    .example-card__title {
+      font-size: 1rem;
+      font-weight: 700;
+      margin-bottom: var(--space-xs);
+    }
+
+    .example-card__specs {
+      font-size: 0.8125rem;
+      color: var(--color-text-muted);
+      line-height: 1.5;
+    }
+
+    .example-card__cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.25rem;
+      font-size: 0.8125rem;
+      font-weight: 600;
+      color: var(--color-purple);
+      margin-top: var(--space-sm);
+      transition: gap var(--transition-fast);
+    }
+
+    .example-card__cta:hover { gap: 0.5rem; }
+
+    /* Featured large comparison */
+    .featured-comparison {
+      display: grid;
+      grid-template-columns: 1.4fr 1fr;
+      gap: var(--space-3xl);
+      align-items: center;
+      background: var(--color-bg-card);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-2xl);
+      overflow: hidden;
+      margin-bottom: var(--space-3xl);
+    }
+
+    .featured-comparison .comparison-widget {
+      border-radius: 0;
+      box-shadow: none;
+      border: none;
+      aspect-ratio: 4/3;
+    }
+
+    .featured-comparison__content {
+      padding: var(--space-2xl);
+    }
+
+    /* Testimonial inline */
+    .inline-testimonial {
+      background: var(--grad-brand-soft);
+      border: 1px solid rgba(155,135,245,0.2);
+      border-radius: var(--radius-xl);
+      padding: var(--space-xl);
+      margin-top: var(--space-lg);
+    }
+
+    .inline-testimonial__quote {
+      font-size: 0.9rem;
+      font-style: italic;
+      color: var(--color-text-secondary);
+      line-height: 1.7;
+      margin-bottom: var(--space-sm);
+    }
+
+    .inline-testimonial__author {
+      font-size: 0.8125rem;
+      font-weight: 700;
+      color: var(--color-purple);
+    }
+
+    /* Stats row */
+    .spec-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-sm);
+      margin-top: var(--space-md);
+    }
+
+    .spec-pill {
+      padding: 0.3rem 0.875rem;
+      border-radius: var(--radius-full);
+      font-size: 0.75rem;
+      font-weight: 600;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid var(--color-border-2);
+      color: var(--color-text-muted);
+    }
+
+    /* Hidden gallery items for filter */
+    .example-card[data-hidden="true"] {
+      display: none;
+    }
+
+    @media (max-width: 1000px) {
+      .examples-grid { grid-template-columns: repeat(2, 1fr); }
+      .featured-comparison { grid-template-columns: 1fr; }
+      .featured-comparison .comparison-widget { aspect-ratio: 16/9; }
+    }
+
+    @media (max-width: 640px) {
+      .examples-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAVIGATION -->
+  <nav class="nav" aria-label="Main navigation">
+    <div class="nav__inner">
+      <a href="index.html" class="nav__logo" aria-label="Perfect Pixel & Web — Home">
+        <img src="images/logo-icon.png" alt="Perfect Pixel logo icon" />
+        <div>
+          <span class="nav__logo-text">Perfect Pixel</span>
+          <span class="nav__logo-sub">& Web</span>
+        </div>
+      </a>
+      <ul class="nav__links" role="list">
+        <li><a href="index.html" class="nav__link">Home</a></li>
+        <li><a href="image-upscaling.html" class="nav__link">Image Upscaling</a></li>
+        <li><a href="colorization.html" class="nav__link">Colorization</a></li>
+        <li><a href="examples.html" class="nav__link active">Examples</a></li>
+        <li><a href="contact.html" class="nav__link">Contact</a></li>
+      </ul>
+      <a href="contact.html" class="nav__cta">Get a Free Quote</a>
+      <button class="nav__hamburger" aria-label="Toggle menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <div class="nav__mobile-menu">
+    <a href="index.html" class="nav__mobile-link">Home</a>
+    <a href="image-upscaling.html" class="nav__mobile-link">Image Upscaling</a>
+    <a href="colorization.html" class="nav__mobile-link">Colorization</a>
+    <a href="examples.html" class="nav__mobile-link">Examples</a>
+    <a href="contact.html" class="nav__mobile-link">Contact</a>
+    <a href="contact.html" class="nav__mobile-cta btn btn--primary">Get a Free Quote</a>
+  </div>
+
+  <main>
+
+    <!-- PAGE HERO -->
+    <section class="page-hero" aria-label="Examples page hero">
+      <div class="container">
+        <div class="hero__eyebrow animate-fadeInUp" style="display:inline-flex; margin-bottom:var(--space-lg);">
+          <span class="hero__eyebrow-dot"></span>
+          Before &amp; After Gallery
+        </div>
+        <h1 class="display-hero animate-fadeInUp animate-delay-1" style="margin-bottom:var(--space-lg);">
+          Real Photos.<br />
+          <span class="text-gradient">Real Transformations.</span>
+        </h1>
+        <p class="body-lg animate-fadeInUp animate-delay-2" style="max-width:600px; margin-inline:auto;">
+          Every example below is a real photo we enhanced for a real client. Drag the sliders to see the full before and after.
+        </p>
+      </div>
+    </section>
+
+    <!-- FEATURED TRANSFORMATION -->
+    <section class="section--sm" style="background:var(--color-bg-2);">
+      <div class="container">
+        <div class="section-header--center" data-reveal>
+          <span class="section-eyebrow">Featured Transformation</span>
+          <h2 class="display-md section-title">The Power of Full Enhancement</h2>
+          <p class="section-subtitle">Upscaling + Colorization + Restoration combined in a single project</p>
+        </div>
+
+        <div class="featured-comparison" data-reveal>
+          <div class="comparison-widget" role="figure" aria-label="Featured before and after comparison">
+            <div class="comparison-widget__after-wrap">
+              <img src="https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?w=900&q=85" alt="After: fully enhanced colorized portrait" loading="lazy" />
+            </div>
+            <div class="comparison-widget__before-wrap" style="clip-path:inset(0 50% 0 0);">
+              <img src="https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?w=900&q=85" alt="Before: original black and white photo" loading="lazy" style="filter:grayscale(1) contrast(0.8) blur(1px);" />
+            </div>
+            <div class="comparison-widget__divider"></div>
+            <div class="comparison-widget__handle">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                <polyline points="15 18 9 12 15 6"></polyline>
+                <polyline points="9 18 3 12 9 6" transform="translate(12,0)"></polyline>
+              </svg>
+            </div>
+            <span class="comparison-widget__label comparison-widget__label--before">Original</span>
+            <span class="comparison-widget__label comparison-widget__label--after">Enhanced</span>
+          </div>
+
+          <div class="featured-comparison__content">
+            <span class="badge badge--purple mb-md">Featured Project</span>
+            <h3 class="heading-xl mb-md">Family Portrait: 1960s Archive</h3>
+            <p class="body-md mb-lg">
+              This family photo came to us heavily faded, slightly blurry, and black &amp; white. We restored the physical damage, upscaled 4×, and colorized based on the client's detailed family colour memories.
+            </p>
+
+            <div class="spec-pills">
+              <span class="spec-pill"><i class="fa-solid fa-arrow-up" style="color:var(--color-purple);"></i> 4× Upscaling</span>
+              <span class="spec-pill"><i class="fa-solid fa-palette" style="color:var(--color-pink);"></i> Full Colorization</span>
+              <span class="spec-pill"><i class="fa-solid fa-wrench" style="color:var(--color-teal);"></i> Restoration</span>
+              <span class="spec-pill"><i class="fa-solid fa-clock" style="color:var(--color-blue);"></i> 24h delivery</span>
+            </div>
+
+            <div class="inline-testimonial">
+              <p class="inline-testimonial__quote">"We had no other photos of this period. What Perfect Pixel returned was nothing short of miraculous. Every detail is exactly as my mother described."</p>
+              <p class="inline-testimonial__author">— Sarah J., Cape Town</p>
+            </div>
+
+            <div class="mt-xl">
+              <a href="contact.html" class="btn btn--primary">Get a Similar Result</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- GALLERY WITH FILTER -->
+    <section class="section" aria-labelledby="gallery-title">
+      <div class="container">
+        <div class="section-header--center" data-reveal>
+          <span class="section-eyebrow">Full Gallery</span>
+          <h2 class="display-md section-title" id="gallery-title">Browse All Transformations</h2>
+          <p class="section-subtitle">Filter by service type to find examples most relevant to your needs.</p>
+        </div>
+
+        <!-- Filter Bar -->
+        <div class="filter-bar" data-reveal>
+          <button class="filter-btn active" data-filter="all">All Examples</button>
+          <button class="filter-btn" data-filter="upscaling">Image Upscaling</button>
+          <button class="filter-btn" data-filter="colorization">Colorization</button>
+          <button class="filter-btn" data-filter="restoration">Restoration</button>
+        </div>
+
+        <!-- Gallery Grid -->
+        <div class="examples-grid" id="examples-grid" data-reveal>
+
+          <!-- Example 1: Upscaling -->
+          <div class="example-card" data-category="upscaling">
+            <div class="comparison-widget">
+              <div class="comparison-widget__after-wrap">
+                <img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=600&q=85" alt="Upscaled portrait after" loading="lazy" />
+              </div>
+              <div class="comparison-widget__before-wrap" style="clip-path:inset(0 50% 0 0);">
+                <img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=600&q=5" alt="Low resolution portrait before" loading="lazy" style="filter:blur(3px) brightness(0.75);" />
+              </div>
+              <div class="comparison-widget__divider"></div>
+              <div class="comparison-widget__handle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"></polyline><polyline points="9 18 3 12 9 6" transform="translate(12,0)"></polyline></svg></div>
+              <span class="comparison-widget__label comparison-widget__label--before">Before</span>
+              <span class="comparison-widget__label comparison-widget__label--after">After</span>
+            </div>
+            <div class="example-card__meta">
+              <div class="example-card__category example-card__category--upscaling">Image Upscaling</div>
+              <h3 class="example-card__title">Portrait — 4× Enhancement</h3>
+              <p class="example-card__specs">800×600px → 3200×2400px · Print-ready A3 · 300 DPI</p>
+              <a href="contact.html" class="example-card__cta">Get this result <i class="fa-solid fa-arrow-right fa-xs"></i></a>
+            </div>
+          </div>
+
+          <!-- Example 2: Colorization -->
+          <div class="example-card" data-category="colorization">
+            <div class="comparison-widget">
+              <div class="comparison-widget__after-wrap">
+                <img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?w=600&q=85" alt="Colorized portrait after" loading="lazy" />
+              </div>
+              <div class="comparison-widget__before-wrap" style="clip-path:inset(0 50% 0 0);">
+                <img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?w=600&q=85" alt="Black and white portrait before" loading="lazy" style="filter:grayscale(1);" />
+              </div>
+              <div class="comparison-widget__divider"></div>
+              <div class="comparison-widget__handle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"></polyline><polyline points="9 18 3 12 9 6" transform="translate(12,0)"></polyline></svg></div>
+              <span class="comparison-widget__label comparison-widget__label--before">B&amp;W</span>
+              <span class="comparison-widget__label comparison-widget__label--after">Colorized</span>
+            </div>
+            <div class="example-card__meta">
+              <div class="example-card__category example-card__category--colorization">Photo Colorization</div>
+              <h3 class="example-card__title">Vintage Portrait — Full Colorization</h3>
+              <p class="example-card__specs">Skin tone analysis · Client colour consultation · Natural, realistic result</p>
+              <a href="contact.html" class="example-card__cta">Colorize my photo <i class="fa-solid fa-arrow-right fa-xs"></i></a>
+            </div>
+          </div>
+
+          <!-- Example 3: Upscaling -->
+          <div class="example-card" data-category="upscaling">
+            <div class="comparison-widget">
+              <div class="comparison-widget__after-wrap">
+                <img src="https://images.unsplash.com/photo-1416339442236-8ceb164046f8?w=600&q=85" alt="Upscaled architecture after" loading="lazy" />
+              </div>
+              <div class="comparison-widget__before-wrap" style="clip-path:inset(0 50% 0 0);">
+                <img src="https://images.unsplash.com/photo-1416339442236-8ceb164046f8?w=600&q=5" alt="Low resolution architecture before" loading="lazy" style="filter:blur(4px) brightness(0.7) contrast(0.8);" />
+              </div>
+              <div class="comparison-widget__divider"></div>
+              <div class="comparison-widget__handle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"></polyline><polyline points="9 18 3 12 9 6" transform="translate(12,0)"></polyline></svg></div>
+              <span class="comparison-widget__label comparison-widget__label--before">Before</span>
+              <span class="comparison-widget__label comparison-widget__label--after">After</span>
+            </div>
+            <div class="example-card__meta">
+              <div class="example-card__category example-card__category--upscaling">Image Upscaling</div>
+              <h3 class="example-card__title">Architecture — 8× Enhancement</h3>
+              <p class="example-card__specs">512×384px → 4096×3072px · Billboard ready · Sharp detail</p>
+              <a href="contact.html" class="example-card__cta">Get this result <i class="fa-solid fa-arrow-right fa-xs"></i></a>
+            </div>
+          </div>
+
+          <!-- Example 4: Restoration -->
+          <div class="example-card" data-category="restoration">
+            <div class="comparison-widget">
+              <div class="comparison-widget__after-wrap">
+                <img src="https://images.unsplash.com/photo-1471039497385-b6d6ba609f9c?w=600&q=85" alt="Restored family photo after" loading="lazy" />
+              </div>
+              <div class="comparison-widget__before-wrap" style="clip-path:inset(0 50% 0 0);">
+                <img src="https://images.unsplash.com/photo-1471039497385-b6d6ba609f9c?w=600&q=85" alt="Damaged family photo before" loading="lazy" style="filter:grayscale(0.4) contrast(0.7) brightness(0.6) blur(1px) sepia(0.5);" />
+              </div>
+              <div class="comparison-widget__divider"></div>
+              <div class="comparison-widget__handle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"></polyline><polyline points="9 18 3 12 9 6" transform="translate(12,0)"></polyline></svg></div>
+              <span class="comparison-widget__label comparison-widget__label--before">Damaged</span>
+              <span class="comparison-widget__label comparison-widget__label--after">Restored</span>
+            </div>
+            <div class="example-card__meta">
+              <div class="example-card__category example-card__category--restoration">Photo Restoration</div>
+              <h3 class="example-card__title">Family Photo — Full Restoration</h3>
+              <p class="example-card__specs">Damage repair · Fading correction · Colour enhancement</p>
+              <a href="contact.html" class="example-card__cta">Restore my photo <i class="fa-solid fa-arrow-right fa-xs"></i></a>
+            </div>
+          </div>
+
+          <!-- Example 5: Colorization -->
+          <div class="example-card" data-category="colorization">
+            <div class="comparison-widget">
+              <div class="comparison-widget__after-wrap">
+                <img src="https://images.unsplash.com/photo-1511895426328-dc8714191011?w=600&q=85" alt="Colorized family photo after" loading="lazy" />
+              </div>
+              <div class="comparison-widget__before-wrap" style="clip-path:inset(0 50% 0 0);">
+                <img src="https://images.unsplash.com/photo-1511895426328-dc8714191011?w=600&q=85" alt="Black and white family photo before" loading="lazy" style="filter:grayscale(1) contrast(0.85);" />
+              </div>
+              <div class="comparison-widget__divider"></div>
+              <div class="comparison-widget__handle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"></polyline><polyline points="9 18 3 12 9 6" transform="translate(12,0)"></polyline></svg></div>
+              <span class="comparison-widget__label comparison-widget__label--before">B&amp;W</span>
+              <span class="comparison-widget__label comparison-widget__label--after">Colorized</span>
+            </div>
+            <div class="example-card__meta">
+              <div class="example-card__category example-card__category--colorization">Photo Colorization</div>
+              <h3 class="example-card__title">Family Group — 1970s Archive</h3>
+              <p class="example-card__specs">Period-accurate colours · Family consultation · High-res output</p>
+              <a href="contact.html" class="example-card__cta">Colorize my photo <i class="fa-solid fa-arrow-right fa-xs"></i></a>
+            </div>
+          </div>
+
+          <!-- Example 6: Upscaling -->
+          <div class="example-card" data-category="upscaling">
+            <div class="comparison-widget">
+              <div class="comparison-widget__after-wrap">
+                <img src="https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?w=600&q=85" alt="Upscaled portrait after" loading="lazy" />
+              </div>
+              <div class="comparison-widget__before-wrap" style="clip-path:inset(0 50% 0 0);">
+                <img src="https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?w=600&q=5" alt="Low resolution portrait before" loading="lazy" style="filter:blur(3px) brightness(0.7);" />
+              </div>
+              <div class="comparison-widget__divider"></div>
+              <div class="comparison-widget__handle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"></polyline><polyline points="9 18 3 12 9 6" transform="translate(12,0)"></polyline></svg></div>
+              <span class="comparison-widget__label comparison-widget__label--before">Before</span>
+              <span class="comparison-widget__label comparison-widget__label--after">After</span>
+            </div>
+            <div class="example-card__meta">
+              <div class="example-card__category example-card__category--upscaling">Image Upscaling</div>
+              <h3 class="example-card__title">Social Media Portrait — 4× Upscale</h3>
+              <p class="example-card__specs">Profile photo rescue · Crisp skin detail · Web &amp; print ready</p>
+              <a href="contact.html" class="example-card__cta">Get this result <i class="fa-solid fa-arrow-right fa-xs"></i></a>
+            </div>
+          </div>
+
+          <!-- Example 7: Restoration -->
+          <div class="example-card" data-category="restoration">
+            <div class="comparison-widget">
+              <div class="comparison-widget__after-wrap">
+                <img src="https://images.unsplash.com/photo-1484723091739-30a097e8f929?w=600&q=85" alt="Restored vintage photo after" loading="lazy" />
+              </div>
+              <div class="comparison-widget__before-wrap" style="clip-path:inset(0 50% 0 0);">
+                <img src="https://images.unsplash.com/photo-1484723091739-30a097e8f929?w=600&q=85" alt="Vintage damaged photo before" loading="lazy" style="filter:sepia(0.8) brightness(0.6) contrast(0.7) blur(0.5px);" />
+              </div>
+              <div class="comparison-widget__divider"></div>
+              <div class="comparison-widget__handle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"></polyline><polyline points="9 18 3 12 9 6" transform="translate(12,0)"></polyline></svg></div>
+              <span class="comparison-widget__label comparison-widget__label--before">Faded</span>
+              <span class="comparison-widget__label comparison-widget__label--after">Restored</span>
+            </div>
+            <div class="example-card__meta">
+              <div class="example-card__category example-card__category--restoration">Photo Restoration</div>
+              <h3 class="example-card__title">Still Life — Colour &amp; Fading Restoration</h3>
+              <p class="example-card__specs">Sepia removal · Exposure correction · Sharpness recovery</p>
+              <a href="contact.html" class="example-card__cta">Restore my photo <i class="fa-solid fa-arrow-right fa-xs"></i></a>
+            </div>
+          </div>
+
+          <!-- Example 8: Colorization -->
+          <div class="example-card" data-category="colorization">
+            <div class="comparison-widget">
+              <div class="comparison-widget__after-wrap">
+                <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=600&q=85" alt="Colorized portrait after" loading="lazy" />
+              </div>
+              <div class="comparison-widget__before-wrap" style="clip-path:inset(0 50% 0 0);">
+                <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=600&q=85" alt="Black and white portrait before" loading="lazy" style="filter:grayscale(1) brightness(0.9);" />
+              </div>
+              <div class="comparison-widget__divider"></div>
+              <div class="comparison-widget__handle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"></polyline><polyline points="9 18 3 12 9 6" transform="translate(12,0)"></polyline></svg></div>
+              <span class="comparison-widget__label comparison-widget__label--before">B&amp;W</span>
+              <span class="comparison-widget__label comparison-widget__label--after">Colorized</span>
+            </div>
+            <div class="example-card__meta">
+              <div class="example-card__category example-card__category--colorization">Photo Colorization</div>
+              <h3 class="example-card__title">Modern Portrait — Stylized Colorization</h3>
+              <p class="example-card__specs">Natural colour restoration · Skin tone perfection</p>
+              <a href="contact.html" class="example-card__cta">Colorize my photo <i class="fa-solid fa-arrow-right fa-xs"></i></a>
+            </div>
+          </div>
+
+          <!-- Example 9: Upscaling -->
+          <div class="example-card" data-category="upscaling">
+            <div class="comparison-widget">
+              <div class="comparison-widget__after-wrap">
+                <img src="https://images.unsplash.com/photo-1447078806655-40579c2520d6?w=600&q=85" alt="Upscaled product photo after" loading="lazy" />
+              </div>
+              <div class="comparison-widget__before-wrap" style="clip-path:inset(0 50% 0 0);">
+                <img src="https://images.unsplash.com/photo-1447078806655-40579c2520d6?w=600&q=5" alt="Low resolution product photo before" loading="lazy" style="filter:blur(2px) brightness(0.75) contrast(0.85);" />
+              </div>
+              <div class="comparison-widget__divider"></div>
+              <div class="comparison-widget__handle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"></polyline><polyline points="9 18 3 12 9 6" transform="translate(12,0)"></polyline></svg></div>
+              <span class="comparison-widget__label comparison-widget__label--before">Before</span>
+              <span class="comparison-widget__label comparison-widget__label--after">After</span>
+            </div>
+            <div class="example-card__meta">
+              <div class="example-card__category example-card__category--upscaling">Image Upscaling</div>
+              <h3 class="example-card__title">Product Photo — E-Commerce Ready</h3>
+              <p class="example-card__specs">1024×768px → 4096×3072px · Sharp product details · Conversion optimized</p>
+              <a href="contact.html" class="example-card__cta">Get this result <i class="fa-solid fa-arrow-right fa-xs"></i></a>
+            </div>
+          </div>
+
+        </div><!-- end examples-grid -->
+
+        <!-- No results message (hidden by default) -->
+        <div id="no-results" style="display:none; text-align:center; padding:var(--space-3xl) 0; color:var(--color-text-muted);">
+          <div style="font-size:2.5rem; margin-bottom:var(--space-md);">🔍</div>
+          <p>No examples found for this filter. <a href="#" onclick="document.querySelector('[data-filter=all]').click(); return false;" style="color:var(--color-purple);">View all examples</a></p>
+        </div>
+      </div>
+    </section>
+
+    <!-- METHODOLOGY -->
+    <section class="section" style="background:var(--color-bg-2);" aria-labelledby="method-title">
+      <div class="container">
+        <div class="section-header--center" data-reveal>
+          <span class="section-eyebrow">Our Methodology</span>
+          <h2 class="display-md section-title" id="method-title">How We Get These Results</h2>
+        </div>
+        <div class="grid-3" data-reveal>
+          <div class="card">
+            <div class="card__icon">🔍</div>
+            <h3 class="card__title">Initial Analysis</h3>
+            <p class="card__body">Every image undergoes a detailed technical assessment to determine the optimal enhancement approach before any work begins.</p>
+          </div>
+          <div class="card card--featured">
+            <div class="card__icon">🤖</div>
+            <h3 class="card__title">AI Processing</h3>
+            <p class="card__body">State-of-the-art neural networks analyse, reconstruct, and enhance your image with a level of detail no manual approach could achieve.</p>
+          </div>
+          <div class="card">
+            <div class="card__icon">👁️</div>
+            <h3 class="card__title">Expert Review</h3>
+            <p class="card__body">A trained human artist inspects every enhanced image, correcting artefacts and ensuring the result feels natural, not processed.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta-band">
+      <div class="container">
+        <div data-reveal>
+          <span class="section-eyebrow">Your Photo Is Next</span>
+          <h2 class="display-md cta-band__title mt-md">
+            Ready to See Your Transformation?
+          </h2>
+          <p class="cta-band__sub">
+            Upload your photo and get a free, no-obligation assessment. We'll show you exactly what we can achieve before you pay.
+          </p>
+          <div class="btn-group flex-center">
+            <a href="contact.html" class="btn btn--primary btn--lg">
+              <i class="fa-solid fa-paper-plane"></i> Get a Free Assessment
+            </a>
+            <a href="colorization.html" class="btn btn--secondary btn--lg">Colorization Service</a>
+          </div>
+        </div>
+        <div class="reassurance-strip mt-2xl" data-reveal>
+          <div class="reassurance-item"><i class="fa-solid fa-clock reassurance-item__icon"></i> 24h turnaround</div>
+          <div class="reassurance-item"><i class="fa-solid fa-rotate-left reassurance-item__icon"></i> Free revisions</div>
+          <div class="reassurance-item"><i class="fa-solid fa-shield-halved reassurance-item__icon"></i> Private &amp; secure</div>
+          <div class="reassurance-item"><i class="fa-solid fa-star reassurance-item__icon"></i> 5-star results</div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__grid">
+        <div>
+          <div class="footer__brand-logo">
+            <img src="images/logo-icon.png" alt="Perfect Pixel icon" />
+            <span style="font-weight:700; font-size:1rem; background:var(--grad-text); -webkit-background-clip:text; background-clip:text; -webkit-text-fill-color:transparent;">Perfect Pixel &amp; Web</span>
+          </div>
+          <p class="footer__brand-desc">South Africa's trusted photo enhancement studio.</p>
+          <div class="footer__social">
+            <a href="#" class="footer__social-link" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+            <a href="#" class="footer__social-link" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+            <a href="#" class="footer__social-link" aria-label="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
+          </div>
+        </div>
+        <div>
+          <h3 class="footer__column-title">Services</h3>
+          <ul class="footer__links">
+            <li><a href="image-upscaling.html" class="footer__link">Image Upscaling</a></li>
+            <li><a href="colorization.html" class="footer__link">Photo Colorization</a></li>
+            <li><a href="contact.html" class="footer__link">Photo Restoration</a></li>
+          </ul>
+        </div>
+        <div>
+          <h3 class="footer__column-title">Company</h3>
+          <ul class="footer__links">
+            <li><a href="examples.html" class="footer__link">Portfolio</a></li>
+            <li><a href="contact.html" class="footer__link">Contact</a></li>
+            <li><a href="contact.html#terms" class="footer__link">Terms</a></li>
+          </ul>
+        </div>
+        <div>
+          <h3 class="footer__column-title">Contact</h3>
+          <ul class="footer__links">
+            <li><a href="mailto:info@perfectpixel.co.za" class="footer__link">info@perfectpixel.co.za</a></li>
+            <li class="footer__link">South Africa</li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer__bottom">
+        <p class="footer__copyright">© 2025 Perfect Pixel &amp; Web. All rights reserved.</p>
+        <nav class="footer__legal">
+          <a href="contact.html#terms" class="footer__legal-link">Terms</a>
+          <a href="contact.html#privacy" class="footer__legal-link">Privacy</a>
+        </nav>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+  <script>
+    // Gallery filter
+    (function() {
+      const filterBtns = document.querySelectorAll('.filter-btn');
+      const cards = document.querySelectorAll('.example-card');
+      const noResults = document.getElementById('no-results');
+
+      filterBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+          const filter = btn.dataset.filter;
+
+          filterBtns.forEach(b => b.classList.remove('active'));
+          btn.classList.add('active');
+
+          let visibleCount = 0;
+          cards.forEach(card => {
+            const match = filter === 'all' || card.dataset.category === filter;
+            card.style.display = match ? '' : 'none';
+            if (match) visibleCount++;
+          });
+
+          noResults.style.display = visibleCount === 0 ? 'block' : 'none';
+
+          // Re-init comparison sliders for visible cards
+          setTimeout(() => {
+            cards.forEach(card => {
+              if (card.style.display !== 'none') {
+                const widget = card.querySelector('.comparison-widget');
+                if (widget) initComparisonSlider(widget);
+              }
+            });
+          }, 50);
+        });
+      });
+    })();
+  </script>
+</body>
+</html>

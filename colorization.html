@@ -1,0 +1,650 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Photo Colorization Service — Perfect Pixel & Web | South Africa</title>
+  <meta name="description" content="Transform black and white photos into vibrant, historically accurate color images. AI-powered colorization with expert human review. Bring your family history to life." />
+  <link rel="icon" type="image/png" href="images/logo-icon.png" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,700;0,800;1,700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.0/css/all.min.css" />
+  <link rel="stylesheet" href="css/style.css" />
+
+  <style>
+    .colorization-hero-split {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-4xl);
+      align-items: center;
+      padding-top: 10rem;
+      padding-bottom: 5rem;
+    }
+
+    .emotion-strip {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: var(--space-lg);
+    }
+
+    .emotion-card {
+      background: var(--color-bg-card);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-xl);
+      padding: var(--space-xl);
+      text-align: center;
+      transition: all var(--transition-base);
+    }
+
+    .emotion-card:hover {
+      border-color: rgba(232,121,176,0.4);
+      transform: translateY(-4px);
+    }
+
+    .emotion-card__icon {
+      font-size: 2.25rem;
+      margin-bottom: var(--space-md);
+    }
+
+    .emotion-card__title {
+      font-size: 1rem;
+      font-weight: 700;
+      margin-bottom: var(--space-xs);
+    }
+
+    .emotion-card__desc {
+      font-size: 0.8125rem;
+      color: var(--color-text-muted);
+      line-height: 1.55;
+    }
+
+    .example-comparison-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-2xl);
+      align-items: center;
+      padding-block: var(--space-3xl);
+      border-bottom: 1px solid var(--color-border);
+    }
+
+    .example-comparison-row:last-child {
+      border-bottom: none;
+    }
+
+    .example-comparison-row:nth-child(even) {
+      direction: rtl;
+    }
+
+    .example-comparison-row:nth-child(even) > * {
+      direction: ltr;
+    }
+
+    .example-detail__tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.25rem;
+      padding: 0.25rem 0.75rem;
+      border-radius: var(--radius-full);
+      font-size: 0.75rem;
+      font-weight: 600;
+      background: rgba(232,121,176,0.12);
+      color: var(--color-pink);
+      border: 1px solid rgba(232,121,176,0.2);
+      margin-bottom: var(--space-md);
+    }
+
+    .consultation-box {
+      background: var(--grad-brand-soft);
+      border: 1px solid rgba(155,135,245,0.25);
+      border-radius: var(--radius-2xl);
+      padding: var(--space-2xl);
+    }
+
+    .consultation-box__title {
+      font-size: 1.25rem;
+      font-weight: 700;
+      margin-bottom: var(--space-md);
+    }
+
+    .consultation-box__desc {
+      font-size: 0.9375rem;
+      color: var(--color-text-secondary);
+      line-height: 1.65;
+      margin-bottom: var(--space-lg);
+    }
+
+    .consultation-input-group {
+      display: flex;
+      gap: var(--space-md);
+    }
+
+    .consultation-input-group .form-control {
+      flex: 1;
+    }
+
+    @media (max-width: 900px) {
+      .colorization-hero-split { grid-template-columns: 1fr; padding-top: 7rem; }
+      .emotion-strip { grid-template-columns: repeat(2, 1fr); }
+      .example-comparison-row { grid-template-columns: 1fr; }
+      .example-comparison-row:nth-child(even) { direction: ltr; }
+      .consultation-input-group { flex-direction: column; }
+    }
+
+    @media (max-width: 640px) {
+      .emotion-strip { grid-template-columns: 1fr 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAVIGATION -->
+  <nav class="nav" aria-label="Main navigation">
+    <div class="nav__inner">
+      <a href="index.html" class="nav__logo" aria-label="Perfect Pixel & Web — Home">
+        <img src="images/logo-icon.png" alt="Perfect Pixel logo icon" />
+        <div>
+          <span class="nav__logo-text">Perfect Pixel</span>
+          <span class="nav__logo-sub">& Web</span>
+        </div>
+      </a>
+      <ul class="nav__links" role="list">
+        <li><a href="index.html" class="nav__link">Home</a></li>
+        <li><a href="image-upscaling.html" class="nav__link">Image Upscaling</a></li>
+        <li><a href="colorization.html" class="nav__link active">Colorization</a></li>
+        <li><a href="examples.html" class="nav__link">Examples</a></li>
+        <li><a href="contact.html" class="nav__link">Contact</a></li>
+      </ul>
+      <a href="contact.html" class="nav__cta">Get a Free Quote</a>
+      <button class="nav__hamburger" aria-label="Toggle menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <div class="nav__mobile-menu">
+    <a href="index.html" class="nav__mobile-link">Home</a>
+    <a href="image-upscaling.html" class="nav__mobile-link">Image Upscaling</a>
+    <a href="colorization.html" class="nav__mobile-link">Colorization</a>
+    <a href="examples.html" class="nav__mobile-link">Examples</a>
+    <a href="contact.html" class="nav__mobile-link">Contact</a>
+    <a href="contact.html" class="nav__mobile-cta btn btn--primary">Get a Free Quote</a>
+  </div>
+
+  <main>
+
+    <!-- HERO -->
+    <section aria-label="Photo Colorization hero">
+      <div class="hero__bg" style="position:fixed; z-index:-1;">
+        <div class="hero__bg-glow hero__bg-glow--1" style="background:radial-gradient(ellipse, rgba(232,121,176,0.12) 0%, transparent 70%);"></div>
+        <div class="hero__bg-glow hero__bg-glow--2"></div>
+        <div class="hero__grid"></div>
+      </div>
+
+      <div class="container">
+        <div class="colorization-hero-split">
+          <!-- Text -->
+          <div>
+            <div class="hero__eyebrow animate-fadeInUp" style="color:var(--color-pink); background:rgba(232,121,176,0.1); border-color:rgba(232,121,176,0.2);">
+              <span class="hero__eyebrow-dot" style="background:var(--color-pink);"></span>
+              Professional Photo Colorization
+            </div>
+            <h1 class="display-hero hero__title animate-fadeInUp animate-delay-1">
+              Black &amp; White<br />
+              Photos, Now in<br />
+              <span class="text-gradient">Vivid Colour</span>
+            </h1>
+            <p class="hero__description animate-fadeInUp animate-delay-2">
+              Our AI-powered colorization combined with expert human artistry brings your historical 
+              and family photos to life with stunning, historically accurate colour — and real emotional impact.
+            </p>
+            <div class="btn-group animate-fadeInUp animate-delay-3">
+              <a href="contact.html" class="btn btn--primary btn--lg">
+                <i class="fa-solid fa-palette"></i> Colorize My Photo
+              </a>
+              <a href="examples.html" class="btn btn--secondary btn--lg">View Gallery</a>
+            </div>
+
+            <div style="display:flex; gap:var(--space-xl); margin-top:var(--space-2xl); padding-top:var(--space-xl); border-top:1px solid var(--color-border);" class="animate-fadeInUp animate-delay-4">
+              <div>
+                <div style="font-size:1.5rem; font-weight:800; background:var(--grad-text); -webkit-background-clip:text; background-clip:text; -webkit-text-fill-color:transparent;">100%</div>
+                <div style="font-size:0.75rem; color:var(--color-text-muted);">Human reviewed</div>
+              </div>
+              <div>
+                <div style="font-size:1.5rem; font-weight:800; background:var(--grad-text); -webkit-background-clip:text; background-clip:text; -webkit-text-fill-color:transparent;">∞</div>
+                <div style="font-size:0.75rem; color:var(--color-text-muted);">Free revisions</div>
+              </div>
+              <div>
+                <div style="font-size:1.5rem; font-weight:800; background:var(--grad-text); -webkit-background-clip:text; background-clip:text; -webkit-text-fill-color:transparent;">24h</div>
+                <div style="font-size:0.75rem; color:var(--color-text-muted);">Turnaround</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Comparison widget -->
+          <div class="animate-fadeInUp animate-delay-2">
+            <div class="comparison-widget" role="figure" aria-label="Colorization before and after comparison">
+              <div class="comparison-widget__after-wrap">
+                <img
+                  src="https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?w=800&q=85"
+                  alt="After: vibrant colorized portrait"
+                  loading="eager"
+                />
+              </div>
+              <div class="comparison-widget__before-wrap" style="clip-path: inset(0 50% 0 0);">
+                <img
+                  src="https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?w=800&q=85"
+                  alt="Before: black and white portrait"
+                  loading="eager"
+                  style="filter: grayscale(1) contrast(0.9) brightness(0.95);"
+                />
+              </div>
+              <div class="comparison-widget__divider"></div>
+              <div class="comparison-widget__handle">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                  <polyline points="15 18 9 12 15 6"></polyline>
+                  <polyline points="9 18 3 12 9 6" transform="translate(12,0)"></polyline>
+                </svg>
+              </div>
+              <span class="comparison-widget__label comparison-widget__label--before">Black &amp; White</span>
+              <span class="comparison-widget__label comparison-widget__label--after">Colorized</span>
+            </div>
+            <p style="text-align:center; font-size:0.8125rem; color:var(--color-text-muted); margin-top:0.75rem;">
+              <i class="fa-solid fa-arrows-left-right" style="color:var(--color-purple);"></i> Drag to compare
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- WHY COLORIZATION MATTERS -->
+    <section class="section" style="background:var(--color-bg-2);" aria-labelledby="why-color-title">
+      <div class="container">
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:var(--space-4xl); align-items:center;">
+          <div data-reveal>
+            <span class="section-eyebrow">The Difference Colour Makes</span>
+            <h2 class="display-md section-title mt-md" id="why-color-title">
+              More Than a Colour Filter —<br/>A Window Into History
+            </h2>
+            <p class="body-lg mb-lg">
+              Colour triggers emotion and recognition in a way grayscale simply cannot. When you see a family member's photo in colour for the first time — their eyes, their clothing, the flowers they held — it creates an entirely new emotional connection.
+            </p>
+            <p class="body-md mb-2xl">
+              Our colorization process goes far beyond automated filters. We research historical clothing, flag, and landscape colours. We consult with clients about family members' appearance. Every colour decision is intentional and meaningful.
+            </p>
+            <blockquote style="border-left:3px solid var(--color-pink); padding-left:var(--space-lg); margin-bottom:var(--space-xl);">
+              <p style="font-size:1rem; font-style:italic; color:var(--color-text-secondary); line-height:1.7;">
+                "The colorization of my late father's war-era photos is the most precious thing in our home. My children can now see him as he truly was."
+              </p>
+              <footer style="margin-top:var(--space-sm); font-size:0.875rem; font-weight:600; color:var(--color-pink);">— Liezel B., Pretoria</footer>
+            </blockquote>
+          </div>
+
+          <div data-reveal="right">
+            <div class="emotion-strip" style="grid-template-columns:1fr 1fr; gap:var(--space-md);">
+              <div class="emotion-card">
+                <div class="emotion-card__icon">👴</div>
+                <div class="emotion-card__title">Family Heritage</div>
+                <div class="emotion-card__desc">See grandparents as living, breathing people — not figures from the past</div>
+              </div>
+              <div class="emotion-card">
+                <div class="emotion-card__icon">💍</div>
+                <div class="emotion-card__title">Wedding Days</div>
+                <div class="emotion-card__desc">Relive your parents' and grandparents' wedding moments in full colour</div>
+              </div>
+              <div class="emotion-card">
+                <div class="emotion-card__icon">🎖️</div>
+                <div class="emotion-card__title">Military &amp; History</div>
+                <div class="emotion-card__desc">Honour veterans and historical figures with accurate uniform colours</div>
+              </div>
+              <div class="emotion-card">
+                <div class="emotion-card__icon">📖</div>
+                <div class="emotion-card__title">Publishing</div>
+                <div class="emotion-card__desc">Enhance historical publications, books, and educational materials</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- COLORIZATION EXAMPLES -->
+    <section class="section" aria-labelledby="examples-title">
+      <div class="container">
+        <div class="section-header--center" data-reveal>
+          <span class="section-eyebrow">See the Magic</span>
+          <h2 class="display-md section-title" id="examples-title">
+            Real Colorization Examples
+          </h2>
+          <p class="section-subtitle">
+            Each photo below was carefully colorized by our team — AI-enhanced and human-perfected.
+          </p>
+        </div>
+
+        <!-- Example 1 -->
+        <div class="example-comparison-row" data-reveal>
+          <div class="comparison-widget" style="border-radius:var(--radius-xl);">
+            <div class="comparison-widget__after-wrap">
+              <img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?w=700&q=80" alt="Colorized portrait" loading="lazy" />
+            </div>
+            <div class="comparison-widget__before-wrap" style="clip-path:inset(0 50% 0 0);">
+              <img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?w=700&q=80" alt="Black and white portrait" loading="lazy" style="filter:grayscale(1);" />
+            </div>
+            <div class="comparison-widget__divider"></div>
+            <div class="comparison-widget__handle">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                <polyline points="15 18 9 12 15 6"></polyline>
+                <polyline points="9 18 3 12 9 6" transform="translate(12,0)"></polyline>
+              </svg>
+            </div>
+            <span class="comparison-widget__label comparison-widget__label--before">B&amp;W Original</span>
+            <span class="comparison-widget__label comparison-widget__label--after">Colorized</span>
+          </div>
+          <div>
+            <span class="example-detail__tag"><i class="fa-solid fa-circle-dot"></i> Portrait Colorization</span>
+            <h3 class="heading-xl mb-md">Bringing People to Life</h3>
+            <p class="body-md mb-lg">
+              Skin tones are the most complex and important element in portrait colorization. We use AI analysis to detect undertones and match natural skin colour, then our experts fine-tune for the most natural result.
+            </p>
+            <div class="feature-list">
+              <div class="feature-list-item">
+                <div class="feature-list-item__check"><i class="fa-solid fa-check fa-xs"></i></div>
+                <p class="feature-list-item__text">Natural-looking skin tone analysis</p>
+              </div>
+              <div class="feature-list-item">
+                <div class="feature-list-item__check"><i class="fa-solid fa-check fa-xs"></i></div>
+                <p class="feature-list-item__text">Eye and hair colour consultation option</p>
+              </div>
+              <div class="feature-list-item">
+                <div class="feature-list-item__check"><i class="fa-solid fa-check fa-xs"></i></div>
+                <p class="feature-list-item__text">Clothing and background accuracy</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Example 2 -->
+        <div class="example-comparison-row" data-reveal>
+          <div class="comparison-widget" style="border-radius:var(--radius-xl);">
+            <div class="comparison-widget__after-wrap">
+              <img src="https://images.unsplash.com/photo-1511895426328-dc8714191011?w=700&q=80" alt="Colorized family photo" loading="lazy" />
+            </div>
+            <div class="comparison-widget__before-wrap" style="clip-path:inset(0 50% 0 0);">
+              <img src="https://images.unsplash.com/photo-1511895426328-dc8714191011?w=700&q=80" alt="Black and white family photo" loading="lazy" style="filter:grayscale(1) contrast(0.85);" />
+            </div>
+            <div class="comparison-widget__divider"></div>
+            <div class="comparison-widget__handle">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                <polyline points="15 18 9 12 15 6"></polyline>
+                <polyline points="9 18 3 12 9 6" transform="translate(12,0)"></polyline>
+              </svg>
+            </div>
+            <span class="comparison-widget__label comparison-widget__label--before">B&amp;W Original</span>
+            <span class="comparison-widget__label comparison-widget__label--after">Colorized</span>
+          </div>
+          <div>
+            <span class="example-detail__tag"><i class="fa-solid fa-circle-dot"></i> Family &amp; Group Photos</span>
+            <h3 class="heading-xl mb-md">Preserving Family Legacy</h3>
+            <p class="body-md mb-lg">
+              Group photos require careful colour harmony across multiple faces and outfits. We treat each person individually and can incorporate your family's colour memories — "Mom's dress was blue" — into the final result.
+            </p>
+            <div class="feature-list">
+              <div class="feature-list-item">
+                <div class="feature-list-item__check"><i class="fa-solid fa-check fa-xs"></i></div>
+                <p class="feature-list-item__text">Family colour consultation available</p>
+              </div>
+              <div class="feature-list-item">
+                <div class="feature-list-item__check"><i class="fa-solid fa-check fa-xs"></i></div>
+                <p class="feature-list-item__text">Period-accurate colours for vintage photos</p>
+              </div>
+              <div class="feature-list-item">
+                <div class="feature-list-item__check"><i class="fa-solid fa-check fa-xs"></i></div>
+                <p class="feature-list-item__text">Revisions until the memory feels right</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- COLOUR CONSULTATION BOX -->
+    <section class="section--sm" style="background:var(--color-bg-2);">
+      <div class="container" style="max-width:860px;">
+        <div class="consultation-box" data-reveal>
+          <div style="display:flex; align-items:center; gap:var(--space-md); margin-bottom:var(--space-md);">
+            <div style="width:44px; height:44px; border-radius:50%; background:var(--grad-brand-soft); border:1px solid rgba(155,135,245,0.3); display:flex; align-items:center; justify-content:center; font-size:1.25rem;">🎨</div>
+            <h3 class="consultation-box__title" style="margin:0;">Tell Us the Colours</h3>
+          </div>
+          <p class="consultation-box__desc">
+            Did your grandmother have green eyes? Did your grandfather wear a navy uniform? Was that wedding dress cream or ivory? The more colour details you share, the more accurate and personal your colorization becomes. Include any colour notes when you contact us.
+          </p>
+          <a href="contact.html" class="btn btn--primary">
+            <i class="fa-solid fa-palette"></i> Start My Colorization
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- PROCESS -->
+    <section class="section" aria-labelledby="process-color-title">
+      <div class="container">
+        <div class="section-header--center" data-reveal>
+          <span class="section-eyebrow">Our Process</span>
+          <h2 class="display-md section-title" id="process-color-title">How Colorization Works</h2>
+        </div>
+        <div class="process-steps">
+          <div class="process-step" data-reveal data-delay="1">
+            <div class="process-step__number">1</div>
+            <h3 class="process-step__title">Submit &amp; Consult</h3>
+            <p class="process-step__body">Send your B&amp;W photo and share any colour memories — clothing, eye colour, landscape details — that will guide our artists.</p>
+          </div>
+          <div class="process-step" data-reveal data-delay="2">
+            <div class="process-step__number">2</div>
+            <h3 class="process-step__title">AI Segmentation</h3>
+            <p class="process-step__body">Our AI identifies every object, skin tone, and texture in the image to create precise, edge-perfect colour zones.</p>
+          </div>
+          <div class="process-step" data-reveal data-delay="3">
+            <div class="process-step__number">3</div>
+            <h3 class="process-step__title">Artist Refinement</h3>
+            <p class="process-step__body">Human artists apply historically accurate, emotionally resonant colours and refine every shadow, highlight, and transition.</p>
+          </div>
+          <div class="process-step" data-reveal data-delay="4">
+            <div class="process-step__number">4</div>
+            <h3 class="process-step__title">Review &amp; Deliver</h3>
+            <p class="process-step__body">You review the result and request any changes. We refine until it looks exactly right, then deliver in high resolution.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="section" style="background:var(--color-bg-2);" aria-labelledby="faq-color-title">
+      <div class="container" style="max-width:760px;">
+        <div class="section-header--center" data-reveal>
+          <span class="section-eyebrow">FAQ</span>
+          <h2 class="display-md section-title" id="faq-color-title">Colorization Questions</h2>
+        </div>
+
+        <div class="faq-list" data-reveal>
+          <div class="faq-item">
+            <div class="faq-item__question">
+              How accurate are the colours?
+              <span class="faq-item__icon"><i class="fa-solid fa-plus"></i></span>
+            </div>
+            <div class="faq-item__answer">
+              <div class="faq-item__answer-inner">
+                Our AI model has been trained on hundreds of thousands of historical images and modern references. For portrait skin tones, our accuracy is extremely high. For clothing and backgrounds, we use historical research, and any colour information you provide is incorporated directly into the process for the most personal result.
+              </div>
+            </div>
+          </div>
+          <div class="faq-item">
+            <div class="faq-item__question">
+              Can I provide specific colour guidance?
+              <span class="faq-item__icon"><i class="fa-solid fa-plus"></i></span>
+            </div>
+            <div class="faq-item__answer">
+              <div class="faq-item__answer-inner">
+                Absolutely — and we encourage it. The more detail you can share (eye colour, hair colour, notable clothing colours, season/location details), the more personal and accurate your result will be. You can include written notes with your submission.
+              </div>
+            </div>
+          </div>
+          <div class="faq-item">
+            <div class="faq-item__question">
+              What types of photos can be colorized?
+              <span class="faq-item__icon"><i class="fa-solid fa-plus"></i></span>
+            </div>
+            <div class="faq-item__answer">
+              <div class="faq-item__answer-inner">
+                Any black and white photograph — portraits, group photos, wedding photos, military photos, historical scenes, architecture, and landscapes. Even severely damaged or low-resolution photos can be colorized, though we may recommend restoration as a first step.
+              </div>
+            </div>
+          </div>
+          <div class="faq-item">
+            <div class="faq-item__question">
+              Can I combine colorization with upscaling?
+              <span class="faq-item__icon"><i class="fa-solid fa-plus"></i></span>
+            </div>
+            <div class="faq-item__answer">
+              <div class="faq-item__answer-inner">
+                Yes — in fact, this is our most popular combination. We often upscale the photo first to recover detail, then apply colorization for the best possible result. Bundle pricing is available for combined services.
+              </div>
+            </div>
+          </div>
+          <div class="faq-item">
+            <div class="faq-item__question">
+              How many revisions are included?
+              <span class="faq-item__icon"><i class="fa-solid fa-plus"></i></span>
+            </div>
+            <div class="faq-item__answer">
+              <div class="faq-item__answer-inner">
+                Unlimited. We won't stop revising until the colours feel exactly right to you. This is your family's history — it needs to be perfect.
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TESTIMONIALS -->
+    <section class="section" aria-labelledby="testimonials-color-title">
+      <div class="container">
+        <div class="section-header--center" data-reveal>
+          <span class="section-eyebrow">What Clients Say</span>
+          <h2 class="display-md section-title" id="testimonials-color-title">Emotion in Every Colour</h2>
+        </div>
+        <div class="grid-3" data-reveal>
+          <div class="testimonial-card">
+            <div class="testimonial-card__stars">
+              <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+            </div>
+            <p class="testimonial-card__quote">"I sobbed when I saw my grandmother's wedding photo in colour. For the first time in my life I could see the flowers she carried were pink, and her dress was ivory — exactly as she described."</p>
+            <div class="testimonial-card__author">
+              <div class="testimonial-card__avatar">N</div>
+              <div><div class="testimonial-card__name">Nomsa K.</div><div class="testimonial-card__meta">Durban</div></div>
+            </div>
+          </div>
+          <div class="testimonial-card">
+            <div class="testimonial-card__stars">
+              <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+            </div>
+            <p class="testimonial-card__quote">"We used their colorization for our book on Johannesburg's history. The accuracy of the period colours was incredible — readers thought they were original colour photographs."</p>
+            <div class="testimonial-card__author">
+              <div class="testimonial-card__avatar">D</div>
+              <div><div class="testimonial-card__name">David M.</div><div class="testimonial-card__meta">Publisher, JHB</div></div>
+            </div>
+          </div>
+          <div class="testimonial-card">
+            <div class="testimonial-card__stars">
+              <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+            </div>
+            <p class="testimonial-card__quote">"I gave my mom a framed colorized photo of her parents for her birthday. She cried for 20 minutes. Worth every cent and more."</p>
+            <div class="testimonial-card__author">
+              <div class="testimonial-card__avatar">T</div>
+              <div><div class="testimonial-card__name">Thandi P.</div><div class="testimonial-card__meta">Cape Town</div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta-band">
+      <div class="container">
+        <div data-reveal>
+          <span class="section-eyebrow">Begin Your Story</span>
+          <h2 class="display-md cta-band__title mt-md">
+            Give Colour Back to Your History
+          </h2>
+          <p class="cta-band__sub">Send your black &amp; white photo today. We'll show you a preview of what colour can do before you commit.</p>
+          <div class="btn-group flex-center">
+            <a href="contact.html" class="btn btn--primary btn--lg">
+              <i class="fa-solid fa-palette"></i> Colorize My Photo
+            </a>
+            <a href="examples.html" class="btn btn--secondary btn--lg">View Examples</a>
+          </div>
+        </div>
+        <div class="reassurance-strip mt-2xl" data-reveal>
+          <div class="reassurance-item"><i class="fa-solid fa-clock reassurance-item__icon"></i> 24h turnaround</div>
+          <div class="reassurance-item"><i class="fa-solid fa-rotate-left reassurance-item__icon"></i> Unlimited revisions</div>
+          <div class="reassurance-item"><i class="fa-solid fa-shield-halved reassurance-item__icon"></i> Private &amp; secure</div>
+          <div class="reassurance-item"><i class="fa-solid fa-heart reassurance-item__icon"></i> Satisfaction guaranteed</div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__grid">
+        <div>
+          <div class="footer__brand-logo">
+            <img src="images/logo-icon.png" alt="Perfect Pixel icon" />
+            <span style="font-weight:700; font-size:1rem; background:var(--grad-text); -webkit-background-clip:text; background-clip:text; -webkit-text-fill-color:transparent;">Perfect Pixel &amp; Web</span>
+          </div>
+          <p class="footer__brand-desc">South Africa's trusted photo enhancement studio.</p>
+          <div class="footer__social">
+            <a href="#" class="footer__social-link" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+            <a href="#" class="footer__social-link" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+            <a href="#" class="footer__social-link" aria-label="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
+          </div>
+        </div>
+        <div>
+          <h3 class="footer__column-title">Services</h3>
+          <ul class="footer__links">
+            <li><a href="image-upscaling.html" class="footer__link">Image Upscaling</a></li>
+            <li><a href="colorization.html" class="footer__link">Photo Colorization</a></li>
+            <li><a href="contact.html" class="footer__link">Photo Restoration</a></li>
+          </ul>
+        </div>
+        <div>
+          <h3 class="footer__column-title">Company</h3>
+          <ul class="footer__links">
+            <li><a href="examples.html" class="footer__link">Portfolio</a></li>
+            <li><a href="contact.html" class="footer__link">Contact</a></li>
+            <li><a href="contact.html#terms" class="footer__link">Terms</a></li>
+          </ul>
+        </div>
+        <div>
+          <h3 class="footer__column-title">Contact</h3>
+          <ul class="footer__links">
+            <li><a href="mailto:info@perfectpixel.co.za" class="footer__link">info@perfectpixel.co.za</a></li>
+            <li class="footer__link">South Africa</li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer__bottom">
+        <p class="footer__copyright">© 2025 Perfect Pixel &amp; Web. All rights reserved.</p>
+        <nav class="footer__legal">
+          <a href="contact.html#terms" class="footer__legal-link">Terms</a>
+          <a href="contact.html#privacy" class="footer__legal-link">Privacy</a>
+        </nav>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>

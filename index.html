@@ -1,0 +1,764 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Perfect Pixel & Web — Professional Photo Enhancement | South Africa</title>
+  <meta name="description" content="South Africa's premier photo enhancement studio. AI-powered image upscaling, colorization & restoration. Transform your memories into crystal-clear masterpieces." />
+  <link rel="icon" type="image/png" href="images/logo-icon.png" />
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,700;0,800;1,700&display=swap" rel="stylesheet" />
+
+  <!-- Icons -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.0/css/all.min.css" />
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="css/style.css" />
+
+  <style>
+    /* Page-specific overrides */
+    .hero__visual {
+      position: relative;
+    }
+
+    .hero__visual-float {
+      position: absolute;
+      background: var(--color-bg-card);
+      border: 1px solid var(--color-border-2);
+      border-radius: var(--radius-lg);
+      padding: 0.75rem 1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.8125rem;
+      font-weight: 600;
+      box-shadow: var(--shadow-lg);
+      animation: float 5s ease-in-out infinite;
+      white-space: nowrap;
+    }
+
+    .hero__visual-float--1 {
+      top: 1.5rem;
+      left: -1.5rem;
+      animation-delay: -1s;
+    }
+
+    .hero__visual-float--2 {
+      bottom: 2rem;
+      right: -1rem;
+      animation-delay: -2.5s;
+    }
+
+    .hero__visual-float__icon {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background: var(--grad-brand-soft);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.75rem;
+      color: var(--color-purple);
+    }
+
+    .services-section {
+      background: var(--color-bg-2);
+    }
+
+    .why-choose__grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-4xl);
+      align-items: center;
+    }
+
+    .why-choose__visual {
+      position: relative;
+      border-radius: var(--radius-2xl);
+      overflow: hidden;
+    }
+
+    .why-choose__visual-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-md);
+    }
+
+    .why-choose__visual-card {
+      background: var(--color-bg-card);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-xl);
+      padding: var(--space-xl);
+      text-align: center;
+    }
+
+    .why-choose__visual-card .number {
+      font-size: 2rem;
+      font-weight: 900;
+      background: var(--grad-text);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      line-height: 1;
+    }
+
+    .why-choose__visual-card .label {
+      font-size: 0.8125rem;
+      color: var(--color-text-muted);
+      margin-top: var(--space-xs);
+    }
+
+    .why-choose__visual-card--featured {
+      grid-column: span 2;
+      background: var(--grad-brand-soft);
+      border-color: rgba(155,135,245,0.3);
+    }
+
+    .testimonials-section {
+      background: var(--color-bg-2);
+    }
+
+    @media (max-width: 900px) {
+      .why-choose__grid { grid-template-columns: 1fr; }
+      .hero__visual-float { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ===================================================
+       NAVIGATION
+       =================================================== -->
+  <nav class="nav" aria-label="Main navigation">
+    <div class="nav__inner">
+      <a href="index.html" class="nav__logo" aria-label="Perfect Pixel & Web — Home">
+        <img src="images/logo-icon.png" alt="Perfect Pixel logo icon" />
+        <div>
+          <span class="nav__logo-text">Perfect Pixel</span>
+          <span class="nav__logo-sub">& Web</span>
+        </div>
+      </a>
+
+      <ul class="nav__links" role="list">
+        <li><a href="index.html" class="nav__link">Home</a></li>
+        <li><a href="image-upscaling.html" class="nav__link">Image Upscaling</a></li>
+        <li><a href="colorization.html" class="nav__link">Colorization</a></li>
+        <li><a href="examples.html" class="nav__link">Examples</a></li>
+        <li><a href="contact.html" class="nav__link">Contact</a></li>
+      </ul>
+
+      <a href="contact.html" class="nav__cta">Get a Free Quote</a>
+
+      <button class="nav__hamburger" aria-label="Toggle menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Mobile Menu -->
+  <div class="nav__mobile-menu" role="dialog" aria-label="Mobile navigation">
+    <a href="index.html" class="nav__mobile-link">Home</a>
+    <a href="image-upscaling.html" class="nav__mobile-link">Image Upscaling</a>
+    <a href="colorization.html" class="nav__mobile-link">Colorization</a>
+    <a href="examples.html" class="nav__mobile-link">Examples</a>
+    <a href="contact.html" class="nav__mobile-link">Contact</a>
+    <a href="contact.html" class="nav__mobile-cta btn btn--primary">Get a Free Quote</a>
+  </div>
+
+  <main>
+
+    <!-- ===================================================
+         HERO
+         =================================================== -->
+    <section class="hero" aria-label="Hero">
+      <div class="hero__bg">
+        <div class="hero__bg-glow hero__bg-glow--1"></div>
+        <div class="hero__bg-glow hero__bg-glow--2"></div>
+        <div class="hero__bg-glow hero__bg-glow--3"></div>
+        <div class="hero__grid"></div>
+      </div>
+
+      <div class="hero__content">
+        <!-- Text side -->
+        <div class="hero__text">
+          <div class="hero__eyebrow animate-fadeInUp">
+            <span class="hero__eyebrow-dot"></span>
+            South Africa's Premier Photo Enhancement Studio
+          </div>
+
+          <h1 class="display-hero hero__title animate-fadeInUp animate-delay-1">
+            Transform Your<br />
+            Photos into<br />
+            <span class="text-gradient">Masterpieces</span>
+          </h1>
+
+          <p class="hero__description animate-fadeInUp animate-delay-2">
+            We breathe new life into your most treasured memories. Using cutting-edge AI 
+            combined with expert human artistry, we upscale, colorize, and restore photos 
+            to stunning, print-ready quality.
+          </p>
+
+          <div class="btn-group animate-fadeInUp animate-delay-3">
+            <a href="contact.html" class="btn btn--primary btn--lg">
+              <i class="fa-solid fa-arrow-up-right-from-square"></i>
+              Get Started Free
+            </a>
+            <a href="examples.html" class="btn btn--secondary btn--lg">
+              <i class="fa-regular fa-images"></i>
+              See Examples
+            </a>
+          </div>
+
+          <div class="hero__trust-badges animate-fadeInUp animate-delay-4">
+            <div class="trust-badge">
+              <div class="trust-badge__number">8×</div>
+              <div class="trust-badge__label">Max Upscaling</div>
+            </div>
+            <div class="trust-badge">
+              <div class="trust-badge__number">24h</div>
+              <div class="trust-badge__label">Turnaround</div>
+            </div>
+            <div class="trust-badge">
+              <div class="trust-badge__number">100%</div>
+              <div class="trust-badge__label">Satisfaction</div>
+            </div>
+            <div class="trust-badge">
+              <div class="trust-badge__number">ZA</div>
+              <div class="trust-badge__label">Based locally</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Visual side -->
+        <div class="hero__visual animate-fadeInUp animate-delay-2">
+          <!-- Floating badges -->
+          <div class="hero__visual-float hero__visual-float--1">
+            <div class="hero__visual-float__icon"><i class="fa-solid fa-wand-magic-sparkles"></i></div>
+            AI-Enhanced &amp; Human-Reviewed
+          </div>
+          <div class="hero__visual-float hero__visual-float--2">
+            <div class="hero__visual-float__icon"><i class="fa-solid fa-shield-halved"></i></div>
+            Secure Upload &amp; Private
+          </div>
+
+          <!-- Before/after slider demo -->
+          <div class="comparison-widget" role="figure" aria-label="Before and after photo comparison">
+            <!-- After (full width, bottom layer) -->
+            <div class="comparison-widget__after-wrap">
+              <img
+                src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=800&q=80"
+                alt="After: sharp, vibrant enhanced portrait"
+                loading="lazy"
+              />
+            </div>
+            <!-- Before (clipped, top layer) -->
+            <div class="comparison-widget__before-wrap" style="clip-path: inset(0 50% 0 0);">
+              <img
+                src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=800&q=10&blur=2"
+                alt="Before: blurry low-resolution portrait"
+                loading="lazy"
+                style="filter: grayscale(0.6) blur(2px) brightness(0.85);"
+              />
+            </div>
+            <!-- Divider & handle -->
+            <div class="comparison-widget__divider"></div>
+            <div class="comparison-widget__handle">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                <polyline points="15 18 9 12 15 6"></polyline>
+                <polyline points="9 18 3 12 9 6" transform="translate(12,0)"></polyline>
+              </svg>
+            </div>
+            <span class="comparison-widget__label comparison-widget__label--before">Before</span>
+            <span class="comparison-widget__label comparison-widget__label--after">After</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================================================
+         STATS BAR
+         =================================================== -->
+    <div class="stats-bar" data-reveal>
+      <div class="container">
+        <div class="stats-grid">
+          <div class="stat-item">
+            <div class="stat-item__value" data-count="5000" data-suffix="+">0</div>
+            <div class="stat-item__label">Photos Enhanced</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-item__value" data-count="8" data-suffix="×">0</div>
+            <div class="stat-item__label">Max Resolution Boost</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-item__value" data-count="24" data-suffix="h">0</div>
+            <div class="stat-item__label">Avg. Turnaround</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-item__value" data-count="99" data-suffix="%">0</div>
+            <div class="stat-item__label">Satisfaction Rate</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===================================================
+         SERVICES
+         =================================================== -->
+    <section class="section services-section" aria-labelledby="services-title">
+      <div class="container">
+        <div class="section-header--center" data-reveal>
+          <span class="section-eyebrow">Our Services</span>
+          <h2 class="display-md section-title" id="services-title">
+            Everything Your Photos Need
+          </h2>
+          <p class="section-subtitle">
+            From blurry snapshots to museum-quality prints — we handle every dimension of professional photo enhancement.
+          </p>
+        </div>
+
+        <div class="grid-3" style="gap: var(--space-2xl);">
+          <!-- Service 1: Upscaling -->
+          <article class="service-card" data-reveal data-delay="1">
+            <div class="service-card__image-wrap">
+              <img
+                src="https://images.unsplash.com/photo-1516035069371-29a1b244cc32?w=600&q=75"
+                alt="High-resolution upscaled photograph"
+                loading="lazy"
+              />
+              <span class="service-card__badge">Most Popular</span>
+            </div>
+            <div class="service-card__body">
+              <h3 class="service-card__title">Image Upscaling</h3>
+              <p class="service-card__description">
+                Enhance low-resolution photos up to 8× their original size without losing detail. 
+                Perfect for printing, archiving, and digital display.
+              </p>
+              <a href="image-upscaling.html" class="service-card__link">
+                Learn more <i class="fa-solid fa-arrow-right fa-xs"></i>
+              </a>
+            </div>
+          </article>
+
+          <!-- Service 2: Colorization -->
+          <article class="service-card" data-reveal data-delay="2">
+            <div class="service-card__image-wrap">
+              <img
+                src="https://images.unsplash.com/photo-1517841905240-472988babdf9?w=600&q=75"
+                alt="Black and white photo colorized to vivid color"
+                loading="lazy"
+              />
+              <span class="service-card__badge">AI + Expert Touch</span>
+            </div>
+            <div class="service-card__body">
+              <h3 class="service-card__title">Photo Colorization</h3>
+              <p class="service-card__description">
+                Bring black &amp; white photographs to vibrant life. Historically accurate colors 
+                reviewed by human experts for every photo.
+              </p>
+              <a href="colorization.html" class="service-card__link">
+                Learn more <i class="fa-solid fa-arrow-right fa-xs"></i>
+              </a>
+            </div>
+          </article>
+
+          <!-- Service 3: Restoration -->
+          <article class="service-card" data-reveal data-delay="3">
+            <div class="service-card__image-wrap">
+              <img
+                src="https://images.unsplash.com/photo-1471039497385-b6d6ba609f9c?w=600&q=75"
+                alt="Old damaged photo restored to pristine quality"
+                loading="lazy"
+              />
+              <span class="service-card__badge">Preserve Memories</span>
+            </div>
+            <div class="service-card__body">
+              <h3 class="service-card__title">Photo Restoration</h3>
+              <p class="service-card__description">
+                Repair tears, scratches, fading, and water damage. Preserve irreplaceable family 
+                photos and historical documents for generations.
+              </p>
+              <a href="contact.html" class="service-card__link">
+                Get a quote <i class="fa-solid fa-arrow-right fa-xs"></i>
+              </a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================================================
+         PROCESS
+         =================================================== -->
+    <section class="section" aria-labelledby="process-title">
+      <div class="container">
+        <div class="section-header--center" data-reveal>
+          <span class="section-eyebrow">How It Works</span>
+          <h2 class="display-md section-title" id="process-title">
+            Simple. Fast. Stunning.
+          </h2>
+          <p class="section-subtitle">
+            From upload to delivery — our streamlined process gets your enhanced photos to you in as little as 24 hours.
+          </p>
+        </div>
+
+        <div class="process-steps">
+          <div class="process-step" data-reveal data-delay="1">
+            <div class="process-step__number">1</div>
+            <h3 class="process-step__title">Upload Securely</h3>
+            <p class="process-step__body">Send your photos through our secure contact form. We accept JPEG, PNG, TIFF, and more.</p>
+          </div>
+          <div class="process-step" data-reveal data-delay="2">
+            <div class="process-step__number">2</div>
+            <h3 class="process-step__title">Choose Your Service</h3>
+            <p class="process-step__body">Tell us what you need — upscaling, colorization, restoration, or a full enhancement package.</p>
+          </div>
+          <div class="process-step" data-reveal data-delay="3">
+            <div class="process-step__number">3</div>
+            <h3 class="process-step__title">AI + Human Magic</h3>
+            <p class="process-step__body">Our AI processes your image and our expert artists review and perfect every detail.</p>
+          </div>
+          <div class="process-step" data-reveal data-delay="4">
+            <div class="process-step__number">4</div>
+            <h3 class="process-step__title">Receive &amp; Love It</h3>
+            <p class="process-step__body">Get your high-resolution enhanced photo delivered within 24 hours. Revisions included.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================================================
+         WHY CHOOSE US
+         =================================================== -->
+    <section class="section services-section" aria-labelledby="why-title">
+      <div class="container">
+        <div class="why-choose__grid">
+          <!-- Text side -->
+          <div>
+            <div data-reveal>
+              <span class="section-eyebrow">Why Perfect Pixel</span>
+              <h2 class="display-md section-title mt-md" id="why-title">
+                Where Technology Meets Artistry
+              </h2>
+              <p class="section-subtitle mb-2xl">
+                We don't just run filters. Every image is a project we take personal responsibility for — because we know these photos matter deeply to you.
+              </p>
+            </div>
+
+            <div class="feature-list">
+              <div class="feature-list-item" data-reveal data-delay="1">
+                <div class="feature-list-item__check"><i class="fa-solid fa-check fa-xs"></i></div>
+                <p class="feature-list-item__text">
+                  <strong>State-of-the-art AI</strong> upscaling trained on millions of high-resolution images, achieving results impossible with traditional tools.
+                </p>
+              </div>
+              <div class="feature-list-item" data-reveal data-delay="2">
+                <div class="feature-list-item__check"><i class="fa-solid fa-check fa-xs"></i></div>
+                <p class="feature-list-item__text">
+                  <strong>Human expert review</strong> on every single image. AI finds the details; our artists ensure the soul of your photo is preserved.
+                </p>
+              </div>
+              <div class="feature-list-item" data-reveal data-delay="3">
+                <div class="feature-list-item__check"><i class="fa-solid fa-check fa-xs"></i></div>
+                <p class="feature-list-item__text">
+                  <strong>Unlimited revisions</strong> until you're 100% thrilled. We won't stop until your photo looks exactly as you imagined.
+                </p>
+              </div>
+              <div class="feature-list-item" data-reveal data-delay="4">
+                <div class="feature-list-item__check"><i class="fa-solid fa-check fa-xs"></i></div>
+                <p class="feature-list-item__text">
+                  <strong>Strict privacy policy.</strong> Your photos are never shared or used without your explicit permission.
+                </p>
+              </div>
+              <div class="feature-list-item" data-reveal data-delay="5">
+                <div class="feature-list-item__check"><i class="fa-solid fa-check fa-xs"></i></div>
+                <p class="feature-list-item__text">
+                  <strong>South African-based</strong> service with local pricing, local support, and a genuine passion for heritage photography.
+                </p>
+              </div>
+            </div>
+
+            <div class="mt-2xl" data-reveal>
+              <a href="contact.html" class="btn btn--primary">Start Your Project</a>
+            </div>
+          </div>
+
+          <!-- Visual side -->
+          <div class="why-choose__visual" data-reveal="right">
+            <div class="why-choose__visual-inner">
+              <div class="why-choose__visual-card">
+                <div class="number">8×</div>
+                <div class="label">Resolution boost</div>
+              </div>
+              <div class="why-choose__visual-card">
+                <div class="number">24h</div>
+                <div class="label">Turnaround time</div>
+              </div>
+              <div class="why-choose__visual-card">
+                <div class="number">∞</div>
+                <div class="label">Free revisions</div>
+              </div>
+              <div class="why-choose__visual-card">
+                <div class="number">100%</div>
+                <div class="label">Satisfaction guaranteed</div>
+              </div>
+              <div class="why-choose__visual-card why-choose__visual-card--featured">
+                <div style="font-size:2rem; margin-bottom:0.5rem;">🔒</div>
+                <div class="number" style="font-size:1.25rem; margin-bottom:0.25rem;">Secure &amp; Private</div>
+                <div class="label" style="font-size:0.75rem;">Your images remain yours — always encrypted, never shared.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================================================
+         GALLERY PREVIEW
+         =================================================== -->
+    <section class="section" aria-labelledby="gallery-preview-title">
+      <div class="container">
+        <div class="section-header--center" data-reveal>
+          <span class="section-eyebrow">Our Work</span>
+          <h2 class="display-md section-title" id="gallery-preview-title">
+            Real Results. Real Memories.
+          </h2>
+          <p class="section-subtitle">
+            Every transformation below is a real photo we enhanced for a real client. See the difference for yourself.
+          </p>
+        </div>
+
+        <div class="gallery-grid" data-reveal>
+          <div class="gallery-item">
+            <img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=600&q=75" alt="Enhanced portrait photography" loading="lazy" />
+            <div class="gallery-item__overlay">
+              <p class="gallery-item__title">Portrait Upscaling</p>
+              <p class="gallery-item__tag">4× Resolution Enhancement</p>
+            </div>
+          </div>
+          <div class="gallery-item">
+            <img src="https://images.unsplash.com/photo-1484723091739-30a097e8f929?w=600&q=75" alt="Colorized food photography" loading="lazy" />
+            <div class="gallery-item__overlay">
+              <p class="gallery-item__title">Vintage Colorization</p>
+              <p class="gallery-item__tag">Black &amp; White → Vivid Color</p>
+            </div>
+          </div>
+          <div class="gallery-item">
+            <img src="https://images.unsplash.com/photo-1511895426328-dc8714191011?w=600&q=75" alt="Family photo restoration" loading="lazy" />
+            <div class="gallery-item__overlay">
+              <p class="gallery-item__title">Family Photo Restoration</p>
+              <p class="gallery-item__tag">Damage Repair + Upscaling</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="text-center mt-2xl" data-reveal>
+          <a href="examples.html" class="btn btn--secondary btn--lg">
+            <i class="fa-regular fa-images"></i>
+            View Full Gallery
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================================================
+         TESTIMONIALS
+         =================================================== -->
+    <section class="section testimonials-section" aria-labelledby="testimonials-title">
+      <div class="container">
+        <div class="section-header--center" data-reveal>
+          <span class="section-eyebrow">Client Stories</span>
+          <h2 class="display-md section-title" id="testimonials-title">
+            Memories Restored. Families Moved.
+          </h2>
+        </div>
+
+        <div class="grid-3" data-reveal>
+          <div class="testimonial-card">
+            <div class="testimonial-card__stars">
+              <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+              <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+              <i class="fa-solid fa-star"></i>
+            </div>
+            <p class="testimonial-card__quote">
+              "I had a photo of my grandmother from 1952 — blurry, faded, barely recognisable. 
+              What Perfect Pixel returned to me brought tears to my eyes. She was alive again."
+            </p>
+            <div class="testimonial-card__author">
+              <div class="testimonial-card__avatar">S</div>
+              <div>
+                <div class="testimonial-card__name">Sarah J.</div>
+                <div class="testimonial-card__meta">Cape Town</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="testimonial-card">
+            <div class="testimonial-card__stars">
+              <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+              <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+              <i class="fa-solid fa-star"></i>
+            </div>
+            <p class="testimonial-card__quote">
+              "Used their upscaling for our real estate listings. Photos went from unusable 
+              to print-magazine quality. Our clients notice the difference immediately."
+            </p>
+            <div class="testimonial-card__author">
+              <div class="testimonial-card__avatar">M</div>
+              <div>
+                <div class="testimonial-card__name">Michael R.</div>
+                <div class="testimonial-card__meta">Johannesburg</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="testimonial-card">
+            <div class="testimonial-card__stars">
+              <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+              <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+              <i class="fa-solid fa-star"></i>
+            </div>
+            <p class="testimonial-card__quote">
+              "The colorization of my late father's war-era photos is the most precious thing 
+              in our home. My children can now see him as he truly was."
+            </p>
+            <div class="testimonial-card__author">
+              <div class="testimonial-card__avatar">L</div>
+              <div>
+                <div class="testimonial-card__name">Liezel B.</div>
+                <div class="testimonial-card__meta">Pretoria</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================================================
+         CTA BAND
+         =================================================== -->
+    <section class="cta-band" aria-label="Call to action">
+      <div class="container">
+        <div data-reveal>
+          <span class="section-eyebrow">Start Today</span>
+          <h2 class="display-md cta-band__title mt-md">
+            Your Memories Deserve the Best
+          </h2>
+          <p class="cta-band__sub">
+            Get a free quote in minutes. No commitment required. We'll tell you exactly what's possible before you pay a cent.
+          </p>
+          <div class="btn-group flex-center">
+            <a href="contact.html" class="btn btn--primary btn--lg">
+              <i class="fa-solid fa-paper-plane"></i>
+              Get a Free Quote
+            </a>
+            <a href="examples.html" class="btn btn--secondary btn--lg">
+              See Before &amp; After
+            </a>
+          </div>
+        </div>
+
+        <div class="reassurance-strip mt-2xl" data-reveal>
+          <div class="reassurance-item">
+            <i class="fa-solid fa-clock reassurance-item__icon"></i>
+            24-hour turnaround
+          </div>
+          <div class="reassurance-item">
+            <i class="fa-solid fa-rotate-left reassurance-item__icon"></i>
+            Unlimited revisions
+          </div>
+          <div class="reassurance-item">
+            <i class="fa-solid fa-shield-halved reassurance-item__icon"></i>
+            100% private &amp; secure
+          </div>
+          <div class="reassurance-item">
+            <i class="fa-solid fa-heart reassurance-item__icon"></i>
+            Satisfaction guaranteed
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ===================================================
+       FOOTER
+       =================================================== -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__grid">
+        <!-- Brand -->
+        <div>
+          <div class="footer__brand-logo">
+            <img src="images/logo-icon.png" alt="Perfect Pixel icon" />
+            <span style="font-weight:700; font-size:1rem; background: var(--grad-text); -webkit-background-clip:text; background-clip:text; -webkit-text-fill-color:transparent;">Perfect Pixel &amp; Web</span>
+          </div>
+          <p class="footer__brand-desc">
+            South Africa's trusted photo enhancement studio. We transform cherished memories 
+            into stunning, crystal-clear masterpieces using AI and human expertise.
+          </p>
+          <div class="footer__social">
+            <a href="#" class="footer__social-link" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+            <a href="#" class="footer__social-link" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+            <a href="#" class="footer__social-link" aria-label="Twitter/X"><i class="fa-brands fa-x-twitter"></i></a>
+            <a href="#" class="footer__social-link" aria-label="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
+          </div>
+        </div>
+
+        <!-- Services -->
+        <div>
+          <h3 class="footer__column-title">Services</h3>
+          <ul class="footer__links">
+            <li><a href="image-upscaling.html" class="footer__link">Image Upscaling</a></li>
+            <li><a href="colorization.html" class="footer__link">Photo Colorization</a></li>
+            <li><a href="contact.html" class="footer__link">Photo Restoration</a></li>
+            <li><a href="contact.html" class="footer__link">Get a Quote</a></li>
+          </ul>
+        </div>
+
+        <!-- Company -->
+        <div>
+          <h3 class="footer__column-title">Company</h3>
+          <ul class="footer__links">
+            <li><a href="examples.html" class="footer__link">Portfolio</a></li>
+            <li><a href="contact.html" class="footer__link">Contact Us</a></li>
+            <li><a href="contact.html#terms" class="footer__link">Terms &amp; Conditions</a></li>
+            <li><a href="contact.html#privacy" class="footer__link">Privacy Policy</a></li>
+          </ul>
+        </div>
+
+        <!-- Contact -->
+        <div>
+          <h3 class="footer__column-title">Contact</h3>
+          <ul class="footer__links">
+            <li class="footer__link" style="display:flex; gap:0.5rem; align-items:flex-start;">
+              <i class="fa-solid fa-envelope" style="margin-top:3px; color:var(--color-purple);"></i>
+              <a href="mailto:info@perfectpixel.co.za" class="footer__link" style="color:var(--color-text-secondary);">info@perfectpixel.co.za</a>
+            </li>
+            <li class="footer__link" style="display:flex; gap:0.5rem; align-items:flex-start;">
+              <i class="fa-solid fa-location-dot" style="margin-top:3px; color:var(--color-purple);"></i>
+              <span>South Africa</span>
+            </li>
+            <li class="footer__link" style="display:flex; gap:0.5rem; align-items:flex-start;">
+              <i class="fa-solid fa-clock" style="margin-top:3px; color:var(--color-purple);"></i>
+              <span>Mon–Fri, 8am–5pm SAST</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer__bottom">
+        <p class="footer__copyright">© 2025 Perfect Pixel &amp; Web. All rights reserved.</p>
+        <nav class="footer__legal" aria-label="Legal links">
+          <a href="contact.html#terms" class="footer__legal-link">Terms</a>
+          <a href="contact.html#privacy" class="footer__legal-link">Privacy</a>
+        </nav>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
